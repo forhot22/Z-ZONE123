@@ -1,5 +1,4 @@
 # Z-ZONE123
-# park_hee_yeon
+# Park Hee Yeon
 # Ko Bae So
 # Jeon Min Soo
-# JSH
