@@ -1,0 +1,105 @@
+<html>
+<head>
+<STYLE TYPE="text/css" TITLE="cal">
+@font-face {font-family:web정;src:url(http://brother3.new21.org/jung9.mwf);}
+
+BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt; font-family:web정; color:#333333;line-height:140%}
+
+a:link    { color:#444444; text-decoration:none; }
+a:visited { color:#444444; text-decoration:none; }
+a:active  {  color:#444444; text-decoration:none; }
+a:hover   { color:#999999; text-decoration:none; }
+
+body {background:#ffffff url(01_bg.gif) fixed no-repeat center middle;
+SCROLLBAR-SHADOW-COLOR: #ffffff;
+SCROLLBAR-ARROW-COLOR: #333333;
+SCROLLBAR-highlight-COLOR: #ffffff;
+scrollbar-track-color: #ffffff;
+scrollbar-face-color: #ffffff;
+scrollbar-3dlight-color: #ffffff;
+scrollbar-darkshadow-color: #333333}
+</STYLE>
+    <title>a month of reminders</title>
+	
+	<script language="javascript" src="cengine.js"></script>
+	<script language="javascript" src="other_scripts.js"></script>
+	<script language="javascript">
+	<!--
+	
+	var mymonth = getCookie('whichmonth');
+	var mpos = 0;
+	
+	var remindtable = "";
+	remindtable += "<table width='400' bgcolor='#000000' border='0' cellpadding='1' cellspacing='0'>";
+	remindtable += "<tr>";
+	remindtable += "<td align='center'>";
+	
+	remindtable += "<table width='100%' bgcolor='#eeeeee' border='0' cellpadding='1' cellspacing='0'>";
+	remindtable += "<tr>";
+	remindtable += "<td align='center'><font face='web정,verdana,arial,helvetica'><b>";
+	remindtable += "::: 전체 일정 :::" + months[mymonth];
+	remindtable += "<p></b></font></td>";
+	remindtable += "</tr>";
+	remindtable += "<tr><td>&nbsp;</td></tr>";
+	remindtable += "<td align='center'>";
+	
+	remindtable += "<table border='0' cellpadding='0' cellspacing='0'>";
+	remindtable += "<tr>";
+	remindtable += "<td><font face='web정,verdana,arial,helvetica' size='2'>";
+	
+	var anyreminders = false;
+	for(var i = 1; i < monthlen[mymonth]; i++) {
+		
+		var acookie = months[mymonth] + i;
+		var aremind = getCookie(acookie);
+		
+		if(document.cookie && aremind) {
+			
+			aremind = aremind.split("|");
+			
+			remindtable += "<b>" + months[mymonth] + " " + i + "</b>";
+			remindtable += "<ul>";
+			for(var x = 0; x < aremind.length; x++) {
+				remindtable += "<li> " + aremind[x];
+			}
+			remindtable += "</ul>";
+			
+			anyreminders = true;
+		}
+		remindtable += "<p>";
+	}
+	
+	if(!anyreminders) {
+		remindtable += "::: 아직 일정이 없네요 :::";
+	}
+	
+	remindtable += "</td>";
+	remindtable += "</tr>";
+	remindtable += "</table>";
+	
+	remindtable += "</font></td>";
+	remindtable += "</tr>";
+	remindtable += "</table>";
+	
+	remindtable += "</font></td>";
+	remindtable += "</tr>";
+	remindtable += "</table>";
+	
+	//-->
+	</script>
+	
+</head>
+
+<body bgcolor="#ffffff" text="#" link="#" alink="#" vlink="#" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<p><br>
+
+<div align="center">
+<script language="javascript">
+<!--
+	document.write(remindtable);
+//-->
+</script>
+</div>
+
+</body>
+</html>

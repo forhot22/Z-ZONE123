@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>add new reminder</title>
+<STYLE TYPE="text/css" TITLE="cal">
+@font-face {font-family:web정;src:url(http://brother3.new21.org/jung9.mwf);}
+
+BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt; font-family:web정; color:#333333;line-height:140%}
+
+a:link    { color:#444444; text-decoration:none; }
+a:visited { color:#444444; text-decoration:none; }
+a:active  {  color:#444444; text-decoration:none; }
+a:hover   { color:#999999; text-decoration:none; }
+
+body {background:#ffffff url(01_bg.gif) fixed no-repeat center middle;
+SCROLLBAR-SHADOW-COLOR: #ffffff;
+SCROLLBAR-ARROW-COLOR: #333333;
+SCROLLBAR-highlight-COLOR: #ffffff;
+scrollbar-track-color: #ffffff;
+scrollbar-face-color: #ffffff;
+scrollbar-3dlight-color: #ffffff;
+scrollbar-darkshadow-color: #333333}
+</STYLE>
+	
+	<script language="javascript" src="cengine.js"></script>
+	<script language="javascript" src="other_scripts.js"></script>
+	<script language="javascript">
+	<!--
+	
+		date = location.search;
+		date = date.substring(1,location.search.length);
+		date = date.split("&");
+		
+		var hdrcol = "#aaaaaa";
+		var hdrsize = "2";
+		var hdrfont = "web정,verdana,arial,helvetica";
+		
+		var timesize = "3";
+		var timefont = "web정,verdana,arial,helvetica";
+		var timesday = "#ff0000";
+		
+<!-- Header Info -->
+		datestamp = "<div align='right'>";
+		datestamp += "<table bgcolor='" + hdrcol + "' width='100%' border='0' cellpadding='1' cellspacing='0'>";
+		datestamp += "<tr>";
+		datestamp += "<td valign='middle'><font face='" + hdrfont + "' size='" + hdrsize + "'>&nbsp; &nbsp; ::: 새로운 일정 기록</font></td>";
+		datestamp += "<td align='right'>";
+		
+		if(date[1] == dt) {
+			datestamp += "<font face='" + timefont + "' size='" + timesize + "'><b>" + date[0] + " <font color='" + timesday + "'>" + date[1] + "</font></b></font>&nbsp;&nbsp;";
+		} else {
+			datestamp += "<font face='" + timefont + "' size='" + timesize + "'><b>" + date[0] + " " + date[1] + "</b></font>&nbsp;&nbsp;";
+		}
+		
+		datestamp += "</td>";
+		datestamp += "</tr>";
+		datestamp += "</table>";
+		datestamp += "</div>";
+<!-- Header Info -->
+		
+		function setRemind() {
+			var rdate = date[0] + date[1];
+			var rvalue = "";
+			
+			//textbox is empty
+			if(document.newtext.txtbox.value == "") {
+				alert("::: 일정이 없습니다 :::");
+				document.newtext.txtbox.focus();
+			//textbox has a reminder
+			} else {
+				rvalue = document.newtext.txtbox.value;
+				
+				//set the cookie
+				var expiration = new Date();
+				var twoweeks = expiration.getTime() + (14 * 24 * 60 * 60 * 1000);
+				expiration.setTime(twoweeks);
+				
+				//if a new cookie
+				if(getCookie(rdate) == "" || getCookie(rdate) == null) {
+					setCookie(rdate, rvalue, expiration);
+				//if an existing cookie, append new reminder
+				} else {
+					oldvalue = getCookie(rdate);
+					oldvalue += "|" + rvalue;
+					setCookie(rdate, oldvalue, expiration);
+				}
+				
+				//go back to day scheduler
+				document.location = "day_scheduler.html?" + date[0] + "&" + date[1];
+				//show results on calendar
+				window.opener.location = "calendar.html";
+			}
+		}
+	
+	//-->
+	</script>
+	
+</head>
+
+<body onload="document.newtext.txtbox.focus();" bgcolor="#ffffff" text="#" link="#" alink="#" vlink="#" topmargin="1" leftmargin="1" marginwidth="1" marginheight="1">
+<script language="javascript">
+<!--
+	document.write(datestamp);
+//-->
+</script>
+<img src="spacer.gif" width=1 height=4 alt="" border="0"><br>
+<font face="web정,verdana,arial,helvetica" size="2">
+<!-- Text Starts Here -->
+<table bgcolor="#ffffff" width="100%" border="0" cellpadding="0" cellspacing="3">
+<tr>
+	<td valign="middle"><font face="web정,verdana,arial,helvetica" size="2">
+	<script language="javascript">
+	<!--
+		document.write("<a href='day_scheduler.html?" + date[0] + "&" + date[1] + "'>::: 일정 보기창</a>");
+	//-->
+	</script>
+	</font></td>
+	<td align='right' valign="middle"><font face="web정,verdana,arial,helvetica" size="2"><a href="javascript://" onclick="javascript:self.close();">:: close ::</a></font></td>
+</tr>
+</table>
+
+<div align="center">
+<form name="newtext">
+<table>
+<tr>
+	<td><font face="web정,verdana,arial,helvetica" size="2">
+	::: 일정 기록<br>
+	<textarea name="txtbox" cols="38" rows="17" wrap="physical"></textarea>
+	</font></td>
+</tr><tr>
+	<td align="center"><font face="web정,verdana,arial,helvetica" size="2"><a href="javascript:setRemind();">::: 일정기록 :::</a></font></td>
+</tr>
+</table>
+</form>
+</div>
+
+<!-- Text Ends Here -->
+</font>
+
+</body>
+</html>
