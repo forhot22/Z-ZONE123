@@ -7,7 +7,7 @@ var dy = today.getDay();
 var year = today.getFullYear();
 var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 var monthlen = new Array(31,checkLeapYear(year),31,30,31,30,31,31,30,31,30,31);
-var days = new Array("ÀÏ¿äÀÏ", "¿ù¿äÀÏ", "È­¿äÀÏ", "¼ö¿äÀÏ", "¸ñ¿äÀÏ", "±İ¿äÀÏ", "Åä¿äÀÏ")
+var days = new Array("ìí", "êÅ", "ûı", "â©", "ÙÊ", "Ğİ", "÷Ï")
 
 var child = "";
 

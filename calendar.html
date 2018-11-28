@@ -104,6 +104,17 @@ scrollbar-darkshadow-color: #333333}
 		
 		document.location="calendar.html";
 	}
+		function gotoday() {
+		setCookie('whichmonth',currentmonth);
+		setCookie('whichyear', currentyear);
+		
+		//check for open child windows and close.
+		if(child && !child.closed) {
+			child.close();
+		}
+		
+		document.location="calendar.html";
+	}
 	
 	//first starting day of month
 	var first = months[mo] + " 01, " + year;
@@ -264,12 +275,20 @@ scrollbar-darkshadow-color: #333333}
 <tr>
 <td>&nbsp;</td>
 </tr>
+
 <tr>
 	<td align="right">
+		<a href='javascript:gotoday();'>
+	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: today :::</font>
+	</td>
+</tr>
+<tr>
+	<td align="left">
 	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: 지존캘린더 :::</font>
 	</td>
 </tr>
 </table>
+
 <script language="javascript">
 <!--
 	document.write(calendar);
