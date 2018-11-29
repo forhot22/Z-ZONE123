@@ -1,4 +1,4 @@
-<html>
+<html manifest="example.appcache">
 <head>
 <STYLE TYPE="text/css" TITLE="cal">
 @font-face {font-family:web정;src:url(http://brother3.new21.org/jung9.mwf);}
@@ -201,18 +201,18 @@ scrollbar-darkshadow-color: #333333}
 					var isremind = getCookie(months[mo] + count);
 					if(isremind) { //if a reminder exists for this day
 						isremind = isremind.split("|");
-						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+						calendar += "<p><div align='center'></div>";
 					}
 				}
 				calendar += "</b></font></td>";
 			} else {
 				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
-				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + daycol + ">" + count + "</font></a>";
+				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><texit><font color=" + daycol + ">" + count + "</font></a>";
 				if(document.cookie) { //allows reminders to be displayed on other months
 					var isremind = getCookie(months[mo] + count);
 					if(isremind) { //if a reminder exists for this day
 						isremind = isremind.split("|");
-						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+						calendar += "<p><div align='center'></div>";
 					}
 				}
 				calendar += "</font></td>";
@@ -247,7 +247,7 @@ scrollbar-darkshadow-color: #333333}
 			}
 			
 			//alert user of number of reminders for which day and display those reminders
-			alert("You have " + alertit.length + " reminder(s) for " + months[today.getMonth()] + " " + dt + ".\n\n" + textit);
+			alert("오늘의 일정은 " + alertit.length + " 개 있습니다. " + months[today.getMonth()] + " " + dt + ".\n\n" + "일정목록 : " + textit);
 		}
 	}
 	
