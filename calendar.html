@@ -1,4 +1,4 @@
-<html>
+<html manifest="example.appcache">
 <head>
 <STYLE TYPE="text/css" TITLE="cal">
 @font-face {font-family:web정;src:url(http://brother3.new21.org/jung9.mwf);}
@@ -85,6 +85,7 @@ scrollbar-darkshadow-color: #333333}
 		document.location="calendar.html";
 	}
 	
+	
 	//go forward one month and refresh
 	function stepup() {
 		//check for a new year being set
@@ -99,6 +100,18 @@ scrollbar-darkshadow-color: #333333}
 		
 		//check for open child windows and close.
 		if(child && !child.closed) {
+			child.close();
+		}
+		
+		document.location="calendar.html";
+	}
+	
+	// gotoday
+	function gotoday(){
+	setCookie('whichmonth',currentmonth);
+	setCookie('whichyear', currentyear);
+	
+	    if(child && !child.closed) {
 			child.close();
 		}
 		
@@ -136,6 +149,8 @@ scrollbar-darkshadow-color: #333333}
 	var daysize = "1";
 	var daycol = "#000000";
 	var sdaycol = "#ff9900";
+	var satcol = "#0100FF"; // 토요일은 파란색
+	var suncol = "FF0000"; // 일요일은 빨간색 
 
 	var calendar = "";
 	calendar =  "<table bgcolor='" + calbg + "' width='" + calwidth + "' border='0' cellpadding='1' cellspacing='0'>";
@@ -205,9 +220,11 @@ scrollbar-darkshadow-color: #333333}
 					}
 				}
 				calendar += "</b></font></td>";
-			} else {
+			} 
+			<!-- saturday color -->
+			else if( (i % 7) == 6) {
 				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
-				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + daycol + ">" + count + "</font></a>";
+				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + satcol + ">" + count + "</font></a>";
 				if(document.cookie) { //allows reminders to be displayed on other months
 					var isremind = getCookie(months[mo] + count);
 					if(isremind) { //if a reminder exists for this day
@@ -217,7 +234,31 @@ scrollbar-darkshadow-color: #333333}
 				}
 				calendar += "</font></td>";
 			}
-			
+			<!-- sunday color -->
+   			else if( (i % 7) == 0) {
+				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
+				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + suncol + ">" + count + "</font></a>";
+				if(document.cookie) { //allows reminders to be displayed on other months
+					var isremind = getCookie(months[mo] + count);
+					if(isremind) { //if a reminder exists for this day
+						isremind = isremind.split("|");
+						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+					}
+				}
+				calendar += "</font></td>";
+			}
+			else{
+				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + "><b>";
+				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + daycol + ">" + count + "</font></a>";
+				if(currentmonth == mo && currentyear == year && document.cookie) {
+					var isremind = getCookie(months[mo] + count);
+					if(isremind) { //if a reminder exists for this day
+						isremind = isremind.split("|");
+						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+					}
+				}
+				calendar += "</b></font></td>";
+			}
 			count++;
 		}
 		
@@ -262,16 +303,28 @@ scrollbar-darkshadow-color: #333333}
 <div align="center">
 <table width="80%">
 <tr>
-<td>&nbsp;</td>
+<td>&nbsp;</td> 	
 </tr>
 <tr>
 	<td align="right">
 	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: 지존캘린더 :::</font>
 	</td>
 </tr>
+<tr>
+<td>&nbsp;</td> 
+</tr>
+<tr>
+	<td align="right">
+	  <a href='javascript:gotoday();'>
+	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: TODAY :::</font>
+	</td>
+</tr>
+
 </table>
 <script language="javascript">
 <!--
+    document.write(getCookie('whichmonth'));
+	document.write(mo);
 	document.write(calendar);
 	if(child && !child.closed) {
 		child.focus();
@@ -281,7 +334,7 @@ scrollbar-darkshadow-color: #333333}
 <table width="80%">
 <tr>
 	<td align="right">
-	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: 2000-2002 Copyleft @ Jigi : Brother3 :::</font>
+	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: 김희연 고배소 박희연 전민수 진시호 :::</font>
 	</td>
 </tr>
 <tr>
