@@ -1,4 +1,4 @@
-<html manifest="example.appcache">
+<html>
 <head>
 <STYLE TYPE="text/css" TITLE="cal">
 @font-face {font-family:web정;src:url(http://brother3.new21.org/jung9.mwf);}
@@ -85,7 +85,6 @@ scrollbar-darkshadow-color: #333333}
 		document.location="calendar.html";
 	}
 	
-	
 	//go forward one month and refresh
 	function stepup() {
 		//check for a new year being set
@@ -106,12 +105,12 @@ scrollbar-darkshadow-color: #333333}
 		document.location="calendar.html";
 	}
 	
-	// gotoday
-	function gotoday(){
-	setCookie('whichmonth',currentmonth);
-	setCookie('whichyear', currentyear);
-	
-	    if(child && !child.closed) {
+		function gotoday() {
+		setCookie('whichmonth',currentmonth);
+		setCookie('whichyear', currentyear);
+		
+		//check for open child windows and close.
+		if(child && !child.closed) {
 			child.close();
 		}
 		
@@ -151,7 +150,7 @@ scrollbar-darkshadow-color: #333333}
 	var sdaycol = "#ff9900";
 	var satcol = "#0100FF"; // 토요일은 파란색
 	var suncol = "FF0000"; // 일요일은 빨간색 
-
+	
 	var calendar = "";
 	calendar =  "<table bgcolor='" + calbg + "' width='" + calwidth + "' border='0' cellpadding='1' cellspacing='0'>";
 	calendar += "<tr>";
@@ -216,49 +215,45 @@ scrollbar-darkshadow-color: #333333}
 					var isremind = getCookie(months[mo] + count);
 					if(isremind) { //if a reminder exists for this day
 						isremind = isremind.split("|");
-						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+						calendar += "<p><div align='center'><img src='reminder_t.png' width='15' height='15' alt='you have " + isremind.length + " reminder(s)'></div>";
 					}
 				}
 				calendar += "</b></font></td>";
-			} 
-			<!-- saturday color -->
-			else if( (i % 7) == 6) {
+			} else if((i % 7) == 6) {
 				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
 				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + satcol + ">" + count + "</font></a>";
 				if(document.cookie) { //allows reminders to be displayed on other months
 					var isremind = getCookie(months[mo] + count);
 					if(isremind) { //if a reminder exists for this day
 						isremind = isremind.split("|");
-						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+						calendar += "<p><div align='center'><img src='reminder_a.png' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
 					}
 				}
 				calendar += "</font></td>";
-			}
-			<!-- sunday color -->
-   			else if( (i % 7) == 0) {
+			} else if((i % 7) == 0) {
 				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
 				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + suncol + ">" + count + "</font></a>";
 				if(document.cookie) { //allows reminders to be displayed on other months
 					var isremind = getCookie(months[mo] + count);
 					if(isremind) { //if a reminder exists for this day
 						isremind = isremind.split("|");
-						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+						calendar += "<p><div align='center'><img src='reminder_a.png' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+					}
+				}
+				calendar += "</font></td>";
+			}  else {
+				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
+				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + daycol + ">" + count + "</font></a>";
+				if(document.cookie) { //allows reminders to be displayed on other months
+					var isremind = getCookie(months[mo] + count);
+					if(isremind) { //if a reminder exists for this day
+						isremind = isremind.split("|");
+						calendar += "<p><div align='center'><img src='reminder_a.png' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
 					}
 				}
 				calendar += "</font></td>";
 			}
-			else{
-				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + "><b>";
-				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + daycol + ">" + count + "</font></a>";
-				if(currentmonth == mo && currentyear == year && document.cookie) {
-					var isremind = getCookie(months[mo] + count);
-					if(isremind) { //if a reminder exists for this day
-						isremind = isremind.split("|");
-						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
-					}
-				}
-				calendar += "</b></font></td>";
-			}
+						
 			count++;
 		}
 		
@@ -303,7 +298,7 @@ scrollbar-darkshadow-color: #333333}
 <div align="center">
 <table width="80%">
 <tr>
-<td>&nbsp;</td> 	
+<td>&nbsp;</td>
 </tr>
 <tr>
 	<td align="right">
@@ -311,20 +306,14 @@ scrollbar-darkshadow-color: #333333}
 	</td>
 </tr>
 <tr>
-<td>&nbsp;</td> 
-</tr>
-<tr>
 	<td align="right">
 	  <a href='javascript:gotoday();'>
 	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: TODAY :::</font>
 	</td>
 </tr>
-
 </table>
 <script language="javascript">
 <!--
-    document.write(getCookie('whichmonth'));
-	document.write(mo);
 	document.write(calendar);
 	if(child && !child.closed) {
 		child.focus();

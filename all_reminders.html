@@ -1,4 +1,4 @@
-<html manifest="example.appcache">
+<html>
 <head>
 <STYLE TYPE="text/css" TITLE="cal">
 @font-face {font-family:web정;src:url(http://brother3.new21.org/jung9.mwf);}
@@ -7,7 +7,7 @@ BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:9
 
 a:link    { color:#444444; text-decoration:none; }
 a:visited { color:#444444; text-decoration:none; }
-a:active  {  color:#444444; text-decoration:none; }
+a:active  { color:#444444; text-decoration:none; }
 a:hover   { color:#999999; text-decoration:none; }
 
 body {background:#ffffff url(01_bg.gif) fixed no-repeat center middle;
@@ -26,7 +26,7 @@ scrollbar-darkshadow-color: #333333}
 	<script language="javascript">
 	<!--
 	
-	var mo = getCookie('whichmonth');
+	var mymonth = getCookie('whichmonth');
 	var mpos = 0;
 	
 	var remindtable = "";
@@ -37,7 +37,7 @@ scrollbar-darkshadow-color: #333333}
 	remindtable += "<table width='100%' bgcolor='#eeeeee' border='0' cellpadding='1' cellspacing='0'>";
 	remindtable += "<tr>";
 	remindtable += "<td align='center'><font face='web정,verdana,arial,helvetica'><b>";
-	remindtable += "::: 전체 일정 :::<br>" + months[mo];
+	remindtable += "::: 전체 일정 :::" + months[mymonth];
 	remindtable += "<p></b></font></td>";
 	remindtable += "</tr>";
 	remindtable += "<tr><td>&nbsp;</td></tr>";
@@ -48,16 +48,16 @@ scrollbar-darkshadow-color: #333333}
 	remindtable += "<td><font face='web정,verdana,arial,helvetica' size='2'>";
 	
 	var anyreminders = false;
-	for(var i = 1; i < monthlen[mo]; i++) {
+	for(var i = 1; i < monthlen[mymonth]; i++) {
 		
-		var acookie = months[mo] + i;
+		var acookie = months[mymonth] + i;
 		var aremind = getCookie(acookie);
 		
 		if(document.cookie && aremind) {
 			
 			aremind = aremind.split("|");
 			
-			remindtable += "<b>" + months[mo] + " " + i + "</b>";
+			remindtable += "<b>" + months[mymonth] + " " + i + "</b>";
 			remindtable += "<ul>";
 			for(var x = 0; x < aremind.length; x++) {
 				remindtable += "<li> " + aremind[x];
@@ -86,6 +86,7 @@ scrollbar-darkshadow-color: #333333}
 	remindtable += "</table>";
 	
 	//-->
+	
 	</script>
 	
 </head>
@@ -96,11 +97,8 @@ scrollbar-darkshadow-color: #333333}
 <div align="center">
 <script language="javascript">
 <!--
-    document.write(mpos);
-	document.write(mo);
-	document.write(remindtable);
 	document.write(document.cookie);
-
+	document.write(remindtable);
 //-->
 </script>
 </div>
