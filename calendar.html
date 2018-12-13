@@ -1,6 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang='kor'>
 <head>
-<STYLE TYPE="text/css" TITLE="cal">
+<STYLE TITLE="cal">
 @font-face {font-family:web정;src:url(http://brother3.new21.org/jung9.mwf);}
 
 BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt; font-family:web정; color:#333333;line-height:140%}
@@ -21,9 +22,9 @@ scrollbar-darkshadow-color: #333333}
 </STYLE>
     <title>Calendar</title>
 	
-	<script language="javascript" src="cengine.js"></script>
-	<script language="javascript" src="other_scripts.js"></script>
-	<script language="javascript">
+	<script src="cengine.js"></script>
+	<script src="other_scripts.js"></script>
+	<script>
 	<!--
 	
 	var mo = "";
@@ -104,6 +105,7 @@ scrollbar-darkshadow-color: #333333}
 		
 		document.location="calendar.html";
 	}
+	
 		function gotoday() {
 		setCookie('whichmonth',currentmonth);
 		setCookie('whichyear', currentyear);
@@ -147,7 +149,9 @@ scrollbar-darkshadow-color: #333333}
 	var daysize = "1";
 	var daycol = "#000000";
 	var sdaycol = "#ff9900";
-
+	var satcol = "#0100FF"; // 토요일은 파란색
+	var suncol = "FF0000"; // 일요일은 빨간색 
+	
 	var calendar = "";
 	calendar =  "<table bgcolor='" + calbg + "' width='" + calwidth + "' border='0' cellpadding='1' cellspacing='0'>";
 	calendar += "<tr>";
@@ -212,23 +216,45 @@ scrollbar-darkshadow-color: #333333}
 					var isremind = getCookie(months[mo] + count);
 					if(isremind) { //if a reminder exists for this day
 						isremind = isremind.split("|");
-						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+						calendar += "<p><div align='center'><img src='reminder_t.png' width='15' height='15' alt='you have " + isremind.length + " reminder(s)'></div>";
 					}
 				}
 				calendar += "</b></font></td>";
-			} else {
+			} else if((i % 7) == 6) {
+				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
+				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + satcol + ">" + count + "</font></a>";
+				if(document.cookie) { //allows reminders to be displayed on other months
+					var isremind = getCookie(months[mo] + count);
+					if(isremind) { //if a reminder exists for this day
+						isremind = isremind.split("|");
+						calendar += "<p><div align='center'><img src='reminder_a.png' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+					}
+				}
+				calendar += "</font></td>";
+			} else if((i % 7) == 0) {
+				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
+				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + suncol + ">" + count + "</font></a>";
+				if(document.cookie) { //allows reminders to be displayed on other months
+					var isremind = getCookie(months[mo] + count);
+					if(isremind) { //if a reminder exists for this day
+						isremind = isremind.split("|");
+						calendar += "<p><div align='center'><img src='reminder_a.png' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+					}
+				}
+				calendar += "</font></td>";
+			}  else {
 				calendar += "<td width='" + twidth + "' height='" + theight + "' bgcolor='" + daybg + "' align='right' valign='top'><font face='" + dayfam + "' size=" + daysize + ">";
 				calendar += "<a href='javascript://' onclick=javascript:open_window('day_scheduler.html?" + months[mo] + "&" + count + "',300,350,0,1);><font color=" + daycol + ">" + count + "</font></a>";
 				if(document.cookie) { //allows reminders to be displayed on other months
 					var isremind = getCookie(months[mo] + count);
 					if(isremind) { //if a reminder exists for this day
 						isremind = isremind.split("|");
-						calendar += "<p><div align='center'><img src='reminder.gif' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
+						calendar += "<p><div align='center'><img src='reminder_a.png' width='11' height='11' alt='you have " + isremind.length + " reminder(s)'></div>";
 					}
 				}
 				calendar += "</font></td>";
 			}
-			
+						
 			count++;
 		}
 		
@@ -275,20 +301,18 @@ scrollbar-darkshadow-color: #333333}
 <tr>
 <td>&nbsp;</td>
 </tr>
-
 <tr>
 	<td align="right">
-		<a href='javascript:gotoday();'>
-	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: today :::</font>
-	</td>
-</tr>
-<tr>
-	<td align="left">
 	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: 지존캘린더 :::</font>
 	</td>
 </tr>
+<tr>
+	<td align="right">
+	  <a href='javascript:gotoday();'>
+	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: TODAY :::</font>
+	</td>
+</tr>
 </table>
-
 <script language="javascript">
 <!--
 	document.write(calendar);
@@ -300,7 +324,7 @@ scrollbar-darkshadow-color: #333333}
 <table width="80%">
 <tr>
 	<td align="right">
-	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: 2000-2002 Copyleft @ Jigi : Brother3 :::</font>
+	  <font style="font-family:web정;font-size:'8pt';color:#333333;">::: 김희연 고배소 박희연 전민수 진시호 :::</font>
 	</td>
 </tr>
 <tr>

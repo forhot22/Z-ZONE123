@@ -1,4 +1,4 @@
-<html mainfest="example.appcache">
+<html>
 <head>
     <title>edit reminder</title>
 <STYLE TYPE="text/css" TITLE="cal">
@@ -139,7 +139,7 @@ scrollbar-darkshadow-color: #333333}
 </head>
 
 <body onload="document.edittext.txtbox.focus();" bgcolor="#ffffff" text="#" link="#" alink="#" vlink="#" topmargin="1" leftmargin="1" marginwidth="1" marginheight="1">
-<script language="javascript">
+<script>
 <!--
 	document.write(datestamp);
 //-->
@@ -153,7 +153,7 @@ scrollbar-darkshadow-color: #333333}
 	<td valign="middle"><font face="web정,verdana,arial,helvetica" size="1">
 	<script language="javascript">
 	<!--
-		document.write("&nbsp; <a href='day_scheduler.html?" + date[0] + "&" + date[1] + "'>daily scheduler</a>");
+		document.write("&nbsp; <a href='day_scheduler.html?" + date[0] + "&" + date[1] + "'>오늘 일정</a>");
 	//-->
 	</script>
 	</font></td>
@@ -166,7 +166,7 @@ scrollbar-darkshadow-color: #333333}
 <table>
 <tr>
 	<td><font face="web정,verdana,arial,helvetica" size="2">
-	current reminder text:<br>
+	최근 일정 :
 	<script language="javascript">
 	<!--
 		document.write("<b>" + display_ctext + "</b>");
@@ -177,7 +177,7 @@ scrollbar-darkshadow-color: #333333}
 	<td><img src="spacer.gif" width=1 height=4 alt="" border="0"></td>
 </tr><tr>
 	<td><font face="verdana,arial,helvetica" size="2">
-	new reminder text: <font size="1">[ <a href="#" onclick="javacript:prePop();">current text</a> ]</font><br>
+	일정 수정 : <font size="1">[ <a href="#" onclick="javacript:prePop();">current text</a> ]</font><br>
 	<textarea name="txtbox" cols="28" rows="5" wrap="physical"></textarea>
 	</font></td>
 </tr><tr>

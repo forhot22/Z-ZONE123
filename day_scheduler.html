@@ -1,4 +1,4 @@
-<html mainfest="example.appcache">
+<html>
 <head>
 <title>daily scheduler</title>
 <STYLE TYPE="text/css" TITLE="cal">
@@ -11,33 +11,19 @@ a:visited { color:#444444; text-decoration:none; }
 a:active  {  color:#444444; text-decoration:none; }
 a:hover   { color:#999999; text-decoration:none; }
 
-body {
-    font:12px/1.5em 굴림, sans-serif; 
-}
-#timetable {
-    width:770px;
-    border-collapse:collapse;
-    table-layout:fixed;
-}
-#timetable th, #timetable td {
-    border:1px solid #ccc;
-}
-#timetable th {
-    background:#f0ebd8;
-}
-td.bgc1 { background:#b3e9e9; }
-td.bgc2 { background:#fecbd2; }
-td.bgc3 { background:#fdd6e8; }
-td.bgc4 { background:#dac9eb; }
-td.bgc5 { background:#bce1fe; }
-td.bgc6 { background:#d3f8fe; }
-td.bgc7 { background:#fce6b5; }
-td.bgc8 { background:#e4f1c5; }
+body {background:#ffffff url(01_bg.gif) fixed no-repeat center middle;
+SCROLLBAR-SHADOW-COLOR: #ffffff;
+SCROLLBAR-ARROW-COLOR: #333333;
+SCROLLBAR-highlight-COLOR: #ffffff;
+scrollbar-track-color: #ffffff;
+scrollbar-face-color: #ffffff;
+scrollbar-3dlight-color: #ffffff;
+scrollbar-darkshadow-color: #333333}
 </STYLE>
 
-	<script language="javascript" src="cengine.js"></script>
-	<script language="javascript" src="other_scripts.js"></script>
-	<script language="javascript">
+	<script  src="cengine.js"></script>
+	<script  src="other_scripts.js"></script>
+	<script >
 	<!--
 		
 		var rlen = 0;
@@ -241,7 +227,7 @@ td.bgc8 { background:#e4f1c5; }
 
 <body bgcolor="#ffffff" text="#" link="#" alink="#" vlink="#" topmargin="1" leftmargin="1" marginwidth="1" marginheight="1">
 <form>
-<script language="javascript">
+<script>
 <!--
 	document.write(datestamp);
 //-->
@@ -251,7 +237,7 @@ td.bgc8 { background:#e4f1c5; }
 <table bgcolor="#ffffff" width="100%" border="0" cellpadding="0" cellspacing="3">
 <tr>
 	<td valign="middle"><font face="web정,verdana,arial,helvetica" size="2">
-	<script language="javascript">
+	<script>
 	<!--
 		document.write("<a href='new_reminder.html?" + date[0] + "&" + date[1] + "'>::: 새로운 일정</a>");
 	//-->
@@ -278,7 +264,7 @@ td.bgc8 { background:#e4f1c5; }
 	<tr>
 		<td valign="top" align="center">
 		<table bgcolor="#eeeeee" width="100%" border="0" cellpadding="3" cellspacing="0">
-			<script language="javascript">
+			<script>
 			<!--
 				document.write(dayschedule);
 			//-->
@@ -292,113 +278,9 @@ td.bgc8 { background:#e4f1c5; }
 	</font></td>
 </tr>
 </table>
-<table id="timetable">
-    <tr>
-        <th width="50">시간</th>
-        <th>일정</th>
-     
-    </tr>
-    <tr>
-        <th>00:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>01:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>02:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>03:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>04:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>05:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>06:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>07:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>08:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>09:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>10:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>11:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>12:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>13:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>14:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>15:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>16:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>17:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>18:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>19:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>20:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>21:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>22:00</th>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <th>23:00</th>
-        <td>&nbsp;</td>
-    </tr>
-
-	
-</table>
-</form>
 </div>
+</form>
+
 
 </body>
 </html>

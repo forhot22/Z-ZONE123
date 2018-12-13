@@ -1,4 +1,4 @@
-<html mainfest="example.appcache">
+<html>
 <head>
 <STYLE TYPE="text/css" TITLE="cal">
 @font-face {font-family:web¡§;src:url(http://brother3.new21.org/jung9.mwf);}
@@ -7,7 +7,7 @@ BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:9
 
 a:link    { color:#444444; text-decoration:none; }
 a:visited { color:#444444; text-decoration:none; }
-a:active  {  color:#444444; text-decoration:none; }
+a:active  { color:#444444; text-decoration:none; }
 a:hover   { color:#999999; text-decoration:none; }
 
 body {background:#ffffff url(01_bg.gif) fixed no-repeat center middle;
@@ -86,6 +86,7 @@ scrollbar-darkshadow-color: #333333}
 	remindtable += "</table>";
 	
 	//-->
+	
 	</script>
 	
 </head>
@@ -96,6 +97,7 @@ scrollbar-darkshadow-color: #333333}
 <div align="center">
 <script language="javascript">
 <!--
+	document.write(document.cookie);
 	document.write(remindtable);
 //-->
 </script>
